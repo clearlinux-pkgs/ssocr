@@ -4,7 +4,7 @@
 #
 Name     : ssocr
 Version  : 2.19.0
-Release  : 1
+Release  : 2
 URL      : https://github.com/auerswal/ssocr/archive/v2.19.0.tar.gz
 Source0  : https://github.com/auerswal/ssocr/archive/v2.19.0.tar.gz
 Summary  : No detailed summary available
@@ -29,7 +29,6 @@ operating system.
 Summary: bin components for the ssocr package.
 Group: Binaries
 Requires: ssocr-license = %{version}-%{release}
-Requires: ssocr-man = %{version}-%{release}
 
 %description bin
 bin components for the ssocr package.
@@ -62,22 +61,28 @@ man components for the ssocr package.
 
 %prep
 %setup -q -n ssocr-2.19.0
+cd %{_builddir}/ssocr-2.19.0
 
 %build
 export http_proxy=http://127.0.0.1:9/
 export https_proxy=http://127.0.0.1:9/
 export no_proxy=localhost,127.0.0.1,0.0.0.0
-export LANG=C
-export SOURCE_DATE_EPOCH=1551131708
-export LDFLAGS="${LDFLAGS} -fno-lto"
-make  %{?_smp_mflags} -e PREFIX=/usr
+export LANG=C.UTF-8
+export SOURCE_DATE_EPOCH=1589410201
+export GCC_IGNORE_WERROR=1
+export CFLAGS="$CFLAGS -fno-lto "
+export FCFLAGS="$FFLAGS -fno-lto "
+export FFLAGS="$FFLAGS -fno-lto "
+export CXXFLAGS="$CXXFLAGS -fno-lto "
+make  %{?_smp_mflags}  -e PREFIX=/usr
 
 
 %install
-export SOURCE_DATE_EPOCH=1551131708
+export SOURCE_DATE_EPOCH=1589410201
 rm -rf %{buildroot}
 mkdir -p %{buildroot}/usr/share/package-licenses/ssocr
-cp COPYING %{buildroot}/usr/share/package-licenses/ssocr/COPYING
+cp %{_builddir}/ssocr-2.19.0/COPYING %{buildroot}/usr/share/package-licenses/ssocr/8624bcdae55baeef00cd11d5dfcfa60f68710a02
+cp %{_builddir}/ssocr-2.19.0/debian/copyright %{buildroot}/usr/share/package-licenses/ssocr/27ce10bb2e2cd714fa8c2ebc346853606c34e473
 %make_install PREFIX=/usr
 
 %files
@@ -93,7 +98,8 @@ cp COPYING %{buildroot}/usr/share/package-licenses/ssocr/COPYING
 
 %files license
 %defattr(0644,root,root,0755)
-/usr/share/package-licenses/ssocr/COPYING
+/usr/share/package-licenses/ssocr/27ce10bb2e2cd714fa8c2ebc346853606c34e473
+/usr/share/package-licenses/ssocr/8624bcdae55baeef00cd11d5dfcfa60f68710a02
 
 %files man
 %defattr(0644,root,root,0755)
