@@ -1,6 +1,12 @@
 Noteworthy Changes in ssocr Releases
 ====================================
 
+Version 2.23.1 (2023-05-18):
+----------------------------
+ * The man page uses the latest ssocr release date as its date (to help
+   in creating reproducible builds)
+ * Documentation improvements
+
 Version 2.23.0 (2023-05-01):
 ----------------------------
  * New option -N, --min-segment to specify the minimum width and height of
