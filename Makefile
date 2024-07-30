@@ -1,5 +1,5 @@
 PKG_NAME := ssocr
-URL = https://github.com/auerswal/ssocr/archive/v2.23.1/ssocr-2.23.1.tar.gz
+URL = https://github.com/auerswal/ssocr/archive/v2.24.0/ssocr-2.24.0.tar.gz
 ARCHIVES = 
 
 include ../common/Makefile.common
